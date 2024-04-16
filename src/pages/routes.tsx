@@ -8,13 +8,16 @@ const Tab = createBottomTabNavigator();
 
 export function Routes() {
   return (
-    <Tab.Navigator initialRouteName="Login">
+    <Tab.Navigator initialRouteName="For You">
       <Tab.Screen
         name="Login"
         component={Login}
         options={{ headerShown: false }}
       ></Tab.Screen>
 
+      <Tab.Screen name="For You" component={Profile}></Tab.Screen>
+      <Tab.Screen name="Following" component={Profile}></Tab.Screen>
+      <Tab.Screen name="Create" component={Profile}></Tab.Screen>
       <Tab.Screen name="Profile" component={Profile}></Tab.Screen>
     </Tab.Navigator>
   );

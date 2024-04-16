@@ -23,7 +23,11 @@ export function Login() {
   const signIn = async () => {
     setLoading(true);
     try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
+      const response = await signInWithEmailAndPassword(
+        authen,
+        email,
+        password
+      );
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -37,7 +41,7 @@ export function Login() {
     setLoading(true);
     try {
       const response = await createUserWithEmailAndPassword(
-        auth,
+        authen,
         email,
         password
       );
