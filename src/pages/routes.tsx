@@ -4,6 +4,8 @@ import { Profile } from "./ProfileScreen";
 import { View, Text } from "react-native";
 import React from "react";
 import { withAuthentication } from "../components/withAuthentication";
+import { AuthorCreation } from "./AuthorCreationScreen";
+import { BookCreation } from "./BookCreationScreen";
 
 import { Post } from "./PostScreen";
 import { ForYou } from "./ForYouScreen";
@@ -12,6 +14,8 @@ const Tab = createBottomTabNavigator();
 
 const AuthenticatedProfile = withAuthentication(Profile);
 const AuthenticatedPost = withAuthentication(Post);
+const AuthenticatedAuthorCreation = withAuthentication(AuthorCreation);
+const AuthenticatedBookCreation = withAuthentication(BookCreation);
 
 export function Routes() {
   return (
@@ -32,6 +36,16 @@ export function Routes() {
       <Tab.Screen name="Post" component={AuthenticatedPost}></Tab.Screen>
 
       <Tab.Screen name="Profile" component={AuthenticatedProfile}></Tab.Screen>
+
+      <Tab.Screen
+        name="AuthorCreation"
+        component={AuthenticatedAuthorCreation}
+      ></Tab.Screen>
+
+      <Tab.Screen
+        name="BookCreation"
+        component={AuthenticatedBookCreation}
+      ></Tab.Screen>
     </Tab.Navigator>
   );
 }
