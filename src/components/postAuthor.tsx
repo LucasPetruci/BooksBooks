@@ -5,14 +5,12 @@ import { Button, SafeAreaView, TextInput, View } from "react-native";
 
 const PostAuthor = () => {
   const [name, setName] = useState<string>("");
-  const [books, setBooks] = useState([]);
 
   const handlePost = async () => {
     try {
       console.log("teste");
       await addDoc(collection(db, "author"), {
         name: name,
-        books: books,
       });
       console.log("name: ", name);
     } catch (e) {
