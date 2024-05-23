@@ -6,6 +6,7 @@ import {
   TextInput,
   ActivityIndicator,
   Button,
+  Pressable,
 } from "react-native";
 import React, { useState } from "react";
 import { auth } from "../firebase/Firebase-config";
@@ -13,12 +14,14 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { useNavigation } from "@react-navigation/native";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const authen = auth;
+  const navigation = useNavigation();
 
   const signIn = async () => {
     setLoading(true);
@@ -28,6 +31,7 @@ export function Login() {
         email,
         password
       );
+      navigation.navigate("Foryou");
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -37,27 +41,8 @@ export function Login() {
     }
   };
 
-  const signUp = async () => {
-    setLoading(true);
-    try {
-      const response = await createUserWithEmailAndPassword(
-        authen,
-        email,
-        password
-      );
-      console.log(response);
-      alert("check email");
-    } catch (error: any) {
-      console.log(error);
-      alert("" + error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Loginn</Text>
       <TextInput
         value={email}
         style={styles.input}
@@ -79,7 +64,14 @@ export function Login() {
       ) : (
         <>
           <Button title="Login" onPress={() => signIn()}></Button>
-          <Button title="Create account" onPress={() => signUp()}></Button>
+          <Pressable
+            onPress={() =>
+              //resolver essa merda
+              navigation.navigate("Login_Register", { screen: "Register" })
+            }
+          >
+            <Text>Register</Text>
+          </Pressable>
         </>
       )}
     </SafeAreaView>
