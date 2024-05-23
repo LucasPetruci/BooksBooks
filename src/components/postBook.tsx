@@ -14,44 +14,32 @@ import {
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { getDatabase, ref, get } from "firebase/database";
-import { getAuthors } from "./getAuthor";
+import { getAuthor } from "./getAuthor";
+import { selectableList } from "./selectableList";
 
 const PostBook = () => {
-  const [authors, setAuthors] = useState([]);
+  const [author, setAuthor] = useState([]);
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [authorId, setAuthorId] = useState("");
   const [pubDate, setPubDate] = useState<Date | null>(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [selectedAuthorsId, setSelectAuthorsId] = useState([]);
+  const [selectedAuthorId, setSelectAuthorId] = useState<Array<any>>([]);
 
   useEffect(() => {
-    async function fetchAuthors() {
-      const authorsData = await getAuthors();
-      if (authorsData) {
-        setAuthors(authorsData);
+    async function fetchAuthor() {
+      const authorData = await getAuthor();
+      if (authorData) {
+        setAuthor(authorData);
       }
     }
 
-    fetchAuthors();
+    fetchAuthor();
   }, []);
 
-  function handleAuthorListPress(newAuthorId: any, element: any) {
-    if (selectedAuthorsId.includes(newAuthorId)) {
-      setSelectAuthorsId(
-        selectedAuthorsId.filter((author) => author !== newAuthorId)
-      );
-      console.log(selectedAuthorsId);
-    } else {
-      setSelectAuthorsId((xxx: Array<any>) => [...xxx, newAuthorId]);
-      element.style = styles.selectedAuthor;
-      console.log(selectedAuthorsId);
-    }
-  }
-
   const handlePost = async () => {
-    if (title === "" || summary === "" || authorId === "") {
-      console.error("Missing required fields");
+    if (title === "" || summary === "" || selectedAuthorId.length === 0) {
+      alert("Missing required fields");
       return;
     }
 
@@ -60,7 +48,7 @@ const PostBook = () => {
       await addDoc(collection(db, "book"), {
         title: title,
         summary: summary,
-        authorId: authorId,
+        authorId: selectedAuthorId,
         pubDate: pubDate,
       });
       console.log("title: ", title);
@@ -81,28 +69,9 @@ const PostBook = () => {
           onChangeText={(text) => setSummary(text)}
         />
         <Text>Book author:</Text>
-        {selectedAuthorsId.map((author) => {
-          return author.name;
-        })}
-        <FlatList
-          data={authors}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <Pressable
-              style={[
-                styles.author,
-                selectedAuthorsId.includes(item.id)
-                  ? styles.selectedAuthor
-                  : {},
-              ]}
-              onPress={(e) => {
-                handleAuthorListPress(item.id, e.target);
-              }}
-            >
-              <Text>{item.data.name}</Text>
-            </Pressable>
-          )}
-        />
+
+        {selectableList("name", author, selectedAuthorId, setSelectAuthorId)}
+
         <TouchableOpacity onPress={() => setShowDatePicker(true)}>
           <Text>{pubDate ? pubDate.toDateString() : "Select Date"}</Text>
         </TouchableOpacity>
