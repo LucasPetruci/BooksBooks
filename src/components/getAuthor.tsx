@@ -1,17 +1,17 @@
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 
-export async function getAuthors() {
+export async function getAuthor() {
   const db = getFirestore();
-  const authorsRef = collection(db, "/author");
+  const authorRef = collection(db, "/author");
   try {
-    const authorsSnapshot = await getDocs(authorsRef);
-    const authorsList = authorsSnapshot.docs.map((doc) => ({
+    const authorSnapshot = await getDocs(authorRef);
+    const authorList = authorSnapshot.docs.map((doc) => ({
       id: doc.id,
       data: doc.data(),
     }));
-    return authorsList;
+    return authorList;
   } catch (e) {
-    console.error("Error getting authors: ", e);
+    console.error("Error getting author: ", e);
     return null;
   }
 }
