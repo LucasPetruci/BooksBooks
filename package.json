@@ -21,6 +21,7 @@
     "react-firebase-hooks": "^5.1.1",
     "react-native": "0.74.1",
     "react-native-datepicker": "^1.7.2",
+    "react-native-image-picker": "^7.1.2",
     "react-native-web": "^0.19.11"
   },
   "devDependencies": {
