@@ -1,10 +1,11 @@
 import { View, Text, SafeAreaView } from "react-native";
 import React from "react";
+import { GetForm } from "../components/getForm";
 
 export function ForYou() {
   return (
     <SafeAreaView>
-      <Text>foryou</Text>
+      <GetForm />
     </SafeAreaView>
   );
 }
