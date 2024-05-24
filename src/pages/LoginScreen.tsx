@@ -62,10 +62,7 @@ export function Login() {
         <>
           <Button title="Login" onPress={() => signIn()}></Button>
           <Pressable
-            onPress={() =>
-              //resolver essa merda
-              navigation.navigate("Login", { screen: "Register" })
-            }
+            onPress={() => navigation.navigate("Login", { screen: "Register" })}
           >
             <Text>Register</Text>
           </Pressable>
