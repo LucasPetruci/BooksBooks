@@ -10,10 +10,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { auth } from "../firebase/Firebase-config";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 
 export function Login() {
@@ -67,7 +64,7 @@ export function Login() {
           <Pressable
             onPress={() =>
               //resolver essa merda
-              navigation.navigate("Login_Register", { screen: "Register" })
+              navigation.navigate("Login", { screen: "Register" })
             }
           >
             <Text>Register</Text>
