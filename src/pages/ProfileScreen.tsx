@@ -1,12 +1,9 @@
-import { View, Text, SafeAreaView, Button, Alert } from "react-native";
+import { Text, SafeAreaView, Button, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../firebase/Firebase-config";
 import { useNavigation } from "@react-navigation/native";
-import { Routes } from "./routes";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { withAuthentication } from "../components/withAuthentication";
 import { onAuthStateChanged } from "firebase/auth";
-import { Login } from "./LoginScreen";
 import UploadImage from "../components/uploadImage";
 
 export const getUserData = async () => {
@@ -47,9 +44,9 @@ export function Profile() {
   };
   return (
     <SafeAreaView>
-      <Text> {userData ? userData["name"] : "Loading..."} </Text>
       {isAuthenticated ? (
         <>
+          <Text> {userData ? userData["name"] : "Loading..."} </Text>
           <UploadImage />
           <Button title="Logout" onPress={logout} />
         </>
