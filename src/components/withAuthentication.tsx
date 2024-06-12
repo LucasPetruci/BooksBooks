@@ -2,7 +2,7 @@ import { View, Text, ActivityIndicator } from "react-native";
 import React from "react";
 import { auth } from "../firebase/Firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
-import { Login } from "../pages/LoginScreen";
+import { Login } from "../views/LoginScreen";
 
 export function withAuthentication(WrappedComponent) {
   return class extends React.Component {

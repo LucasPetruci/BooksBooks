@@ -1,11 +1,12 @@
 import { Text, View, StyleSheet } from "react-native";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-
+import {getAll} from "../services/authorServices"
 export function GetForm() {
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
+    // console.log("authors"+getAll());
     async function fetchPost() {
       const db = getFirestore();
       const postRef = collection(db, "/posts");
@@ -34,6 +35,7 @@ export function GetForm() {
         <Text key={post.id} style={styles.post}>
           {post.data.message} {post.data.userName}
         </Text>
+
       ))}
     </View>
   );

@@ -14,7 +14,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import {} from "./postBook";
 import { selectableList } from "./selectableList";
 import { getBook } from "./getBook";
-import { getUserData } from "../pages/ProfileScreen";
+import { getUserData } from "../views/ProfileScreen";
 
 const PostForm = () => {
   const [message, setMessage] = useState("");

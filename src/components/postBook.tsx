@@ -14,7 +14,7 @@ import {
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { getDatabase, ref, get } from "firebase/database";
-import { getAuthor } from "./getAuthor";
+import { getAuthor } from "../services/authorServices";
 import { selectableList } from "./selectableList";
 
 const PostBook = () => {
