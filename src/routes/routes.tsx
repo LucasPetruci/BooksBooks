@@ -1,15 +1,15 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Login } from "./LoginScreen";
-import { Profile } from "./ProfileScreen";
+import { Login } from "../views/LoginScreen";
+import { Profile } from "../views/ProfileScreen";
 import { View, Text } from "react-native";
 import React, { useState } from "react";
 import { withAuthentication } from "../components/withAuthentication";
-import { AuthorCreation } from "./AuthorCreationScreen";
-import { BookCreation } from "./BookCreationScreen";
+import { AuthorCreation } from "../views/AuthorCreationScreen";
+import { BookCreation } from "../views/BookCreationScreen";
 
-import { Post } from "./PostScreen";
-import { ForYou } from "./ForYouScreen";
-import { Register } from "./RegisterScreen";
+import { Post } from "../views/PostScreen";
+import { ForYou } from "../views/ForYouScreen";
+import { Register } from "../views/RegisterScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Tab = createBottomTabNavigator();

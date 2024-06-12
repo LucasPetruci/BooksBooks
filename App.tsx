@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { Login_Register, Routes } from "./src/pages/routes";
+import { Login_Register, Routes } from "./src/routes/routes";
 import { createStackNavigator } from "@react-navigation/stack";
 
 const RootStack = createStackNavigator();
