@@ -1,12 +1,14 @@
 import { Text, View, StyleSheet } from "react-native";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import {getAll} from "../services/authorServices"
+// import { getAllAuthors, getAuthorById, getAuthorByName, createAuthor } from "../services/authorServices"
 export function GetForm() {
   const [posts, setPosts] = useState(null);
-
+  //TODO - rever o nome desse arquivo
   useEffect(() => {
-    // console.log("authors"+getAll());
+    // async function fetchAuthors() {
+    //   const authors = await getAllAuthors();
+    // };
     async function fetchPost() {
       const db = getFirestore();
       const postRef = collection(db, "/posts");
@@ -23,6 +25,7 @@ export function GetForm() {
       }
     }
     fetchPost();
+    // fetchAuthors();
   }, []);
 
   if (!posts) {
