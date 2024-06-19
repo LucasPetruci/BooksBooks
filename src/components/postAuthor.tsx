@@ -2,20 +2,19 @@ import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
 import { db } from "../firebase/Firebase-config";
 import { Button, SafeAreaView, TextInput, View } from "react-native";
+import { createAuthor } from "../services/authorServices";
 
 const PostAuthor = () => {
   const [name, setName] = useState<string>("");
 
   const handlePost = async () => {
-    try {
-      console.log("teste");
-      await addDoc(collection(db, "author"), {
-        name: name,
-      });
-      console.log("name: ", name);
-    } catch (e) {
+    try{
+      createAuthor(name)
+    }
+    catch (e) {
       console.error("Error adding document: ", e);
     }
+
   };
 
   return (
